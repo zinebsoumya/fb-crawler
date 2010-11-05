@@ -155,7 +155,7 @@ class Facebook(object):
         data = ''.join(response.readlines())
         res = re.findall(r"""Friends: <a href=\"https://graph.facebook.com/me/friends\?access_token=(.+?)\">""", data)
         if len(res) < 1:
-            print "getAccessToken fails"
+            print("getAccessToken fails")
             exit(1)
         self.access_token = res[0]
                     
@@ -163,7 +163,7 @@ class Facebook(object):
         response = self.opener.open("https://graph.facebook.com/me/friends?access_token=" + self.access_token)
         data = ''.join(response.readlines())
         friends = re.findall(r"""\"name\":\s*\"(.+?)\",\s*\"id\":\s*\"(\d+)\"""", data, re.M)
-        print "getMyFriends found " + str(len(friends)) + " friends"
+        print("getMyFriends found " + str(len(friends)) + " friends")
         for f in friends:
             self.network.addNode(f[1], f[0], 1)
             self.network.addTie(self.id, f[1])
@@ -175,7 +175,7 @@ class Facebook(object):
         fids = self.network.getFriendsID(dist - 1)        
         i = 0
         while i < len(fids):
-            print "getFriends " + str(i) + "/" + str(len(fids) - 1) + "..."
+            print("getFriends " + str(i) + "/" + str(len(fids) - 1) + "...")
             
             try:
                 fid = fids[i]
@@ -195,7 +195,7 @@ class Facebook(object):
         fids = self.network.getFriendsID(dist) 
         i = 0
         while i < len(fids):
-            print "access photos " + str(i) + "/" + str(len(fids) - 1) + "..."
+            print("access photos " + str(i) + "/" + str(len(fids) - 1) + "...")
             
             try:
                 fid = fids[i]
@@ -218,7 +218,7 @@ class Facebook(object):
         fids = self.network.getFriendsID(dist) 
         i = 0
         while i < len(fids):
-            print "access info " + str(i) + "/" + str(len(fids) - 1) + "..."
+            print("access info " + str(i) + "/" + str(len(fids) - 1) + "...")
             
             try:
                 fid = fids[i]
