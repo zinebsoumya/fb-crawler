@@ -259,8 +259,7 @@ class Facebook(object):
             self.getFriends(i)
             #self.accessPhotos(i)
             #self.accessInfo(i)
-        self.accessPhotos(1)
-        self.accessInfo(1)
+            
         return self.network
 
 fb = Facebook(fb_username, fb_password, fb_name, fb_myid)
